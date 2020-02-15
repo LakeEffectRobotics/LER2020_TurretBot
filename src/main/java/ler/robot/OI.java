@@ -9,6 +9,7 @@ package ler.robot;
 
 import edu.wpi.first.hal.sim.DriverStationSim;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -22,7 +23,9 @@ public class OI {
 
     // The driver's controller
     public XboxController driverController = new XboxController(RobotMap.OIConstants.DRIVER_CONTROLLER_PORT);
+    public XboxController operatorController = new XboxController(RobotMap.OIConstants.OPERATOR_CONTROLLER_PORT);
 
+    
     public JoystickButton halfSpeedButton = new JoystickButton(driverController, RobotMap.OIConstants.HALF_SPEED_BUTTON);
 
     /**
@@ -31,7 +34,7 @@ public class OI {
      * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
      * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
-    public void init(Drivetrain drivetrain) {
+    public void init(RobotContainer container) {
         /*
          * // Grab the hatch when the 'A' button is pressed. new
          * JoystickButton(m_driverController, Button.kA.value) .whenPressed(new
@@ -39,8 +42,11 @@ public class OI {
          * pressed. new JoystickButton(m_driverController, Button.kB.value)
          * .whenPressed(new ReleaseHatch(m_hatchSubsystem));
          */
+
+
         // While holding the shoulder button, drive at half speed
-        halfSpeedButton.whenHeld(new HalveDriveSpeed(drivetrain));
+        
+        halfSpeedButton.whenHeld(new HalveDriveSpeed(container.drivetrain));
 
     }
 

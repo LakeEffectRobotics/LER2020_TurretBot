@@ -7,11 +7,15 @@
 
 package ler.robot;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+import ler.robot.subsystems.Turret;
+import ler.robot.subsystems.Shooter;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -23,42 +27,74 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  */
 public final class RobotMap {
   public static final class DriveConstants {
-    public static final int LEFT_MOTOR_1 = 1;
-    public static final int LEFT_MOTOR_2 = 2;
-    public static final int LEFT_MOTOR_3 = 3;
-    public static final int RIGHT_MOTOR_1 = 4;
-    public static final int RIGHT_MOTOR_2 = 5;
-    public static final int RIGHT_MOTOR_3 = 6;
+    public static final int LEFT_DRIVE_SPARK_1 = 2;
+    public static final int LEFT_DRIVE_SPARK_2 = 3;
+    public static final int LEFT_DRIVE_SPARK_3 = 4;
+    public static final int RIGHT_DRIVE_SPARK_1 = 5;
+    public static final int RIGHT_DRIVE_SPARK_2 = 6;
+    public static final int RIGHT_DRIVE_SPARK_3 = 7;
+
+    public static final int SHOOTER_TOP_TALON = 20;
+    public static final int SHOOTER_BOTTOM_TALON = 19;
+    public static final int TURRET_TALON = 18;
+    public static final int TURRET_FEEDER_TALON = 17;
+    
   }
 
   public static final class OIConstants {
     public static final int DRIVER_CONTROLLER_PORT = 1;
+    public static final int OPERATOR_CONTROLLER_PORT = 2;
     
     public static final int HALF_SPEED_BUTTON = Button.kBumperRight.value;
   }
 
   // The motors on the left side of the drive.
-  public static final CANSparkMax leftMotor1 = new CANSparkMax(DriveConstants.LEFT_MOTOR_1, MotorType.kBrushless);
-  public static final CANSparkMax leftMotor2 = new CANSparkMax(DriveConstants.LEFT_MOTOR_2, MotorType.kBrushless);
-  public static final CANSparkMax leftMotor3 = new CANSparkMax(DriveConstants.LEFT_MOTOR_3, MotorType.kBrushless);
+  public static final CANSparkMax leftDriveSpark1 = new CANSparkMax(DriveConstants.LEFT_DRIVE_SPARK_1, MotorType.kBrushless);
+  public static final CANSparkMax leftDriveSpark2 = new CANSparkMax(DriveConstants.LEFT_DRIVE_SPARK_2, MotorType.kBrushless);
+  public static final CANSparkMax leftDriveSpark3 = new CANSparkMax(DriveConstants.LEFT_DRIVE_SPARK_3, MotorType.kBrushless);
   
 
   // The motors on the right side of the drive.
-  public static final CANSparkMax rightMotor1 = new CANSparkMax(DriveConstants.RIGHT_MOTOR_1, MotorType.kBrushless);
-  public static final CANSparkMax rightMotor2 = new CANSparkMax(DriveConstants.RIGHT_MOTOR_2, MotorType.kBrushless);
-  public static final CANSparkMax rightMotor3 = new CANSparkMax(DriveConstants.RIGHT_MOTOR_3, MotorType.kBrushless);
+  public static final CANSparkMax rightDriveSpark1 = new CANSparkMax(DriveConstants.RIGHT_DRIVE_SPARK_1, MotorType.kBrushless);
+  public static final CANSparkMax rightDriveSpark2 = new CANSparkMax(DriveConstants.RIGHT_DRIVE_SPARK_2, MotorType.kBrushless);
+  public static final CANSparkMax rightDriveSpark3 = new CANSparkMax(DriveConstants.RIGHT_DRIVE_SPARK_3, MotorType.kBrushless);
+
+
+  // Turret motors (shooter, feeder, pivoting)
+  public static final TalonSRX shooterTopTalon = new TalonSRX(DriveConstants.SHOOTER_TOP_TALON);
+  public static final TalonSRX shooterBottomTalon = new TalonSRX(DriveConstants.SHOOTER_BOTTOM_TALON);
+  public static final TalonSRX turretMotor = new TalonSRX(DriveConstants.TURRET_TALON);
+  public static final TalonSRX shooterFeederTalon = new TalonSRX(DriveConstants.TURRET_FEEDER_TALON);
+
 
   // The robot's drive
-  public static final DifferentialDrive m_drive = new DifferentialDrive(leftMotor1, rightMotor1);
+  public static final DifferentialDrive m_drive = new DifferentialDrive(leftDriveSpark1, rightDriveSpark1);
 
   public static void init(){
-    leftMotor2.follow(leftMotor1);
-    leftMotor3.follow(leftMotor1);
+    // Driving logic/following
+    leftDriveSpark2.follow(leftDriveSpark1);
+    leftDriveSpark3.follow(leftDriveSpark1);
 
-    leftMotor1.setInverted(true);
-    rightMotor1.setInverted(false);
+    leftDriveSpark1.setInverted(true);
+    rightDriveSpark1.setInverted(false);
 
-    rightMotor2.follow(rightMotor1);
-    rightMotor3.follow(rightMotor1);
+    rightDriveSpark2.follow(rightDriveSpark1);
+    rightDriveSpark3.follow(rightDriveSpark1);
+
+    // Turret motors PIDS
+    turretMotor.config_kF(0, Turret.kF);
+    turretMotor.config_kP(0, Turret.kP);
+    turretMotor.config_kI(0, Turret.kI);
+    turretMotor.config_kD(0, Turret.kD);
+
+    shooterTopTalon.config_kF(0, Shooter.kF);
+    shooterTopTalon.config_kP(0, Shooter.kP);
+    shooterTopTalon.config_kI(0, Shooter.kI);
+    shooterTopTalon.config_kD(0, Shooter.kD);
+
+    shooterTopTalon.config_kF(0, Shooter.kF);
+    shooterTopTalon.config_kP(0, Shooter.kP);
+    shooterTopTalon.config_kI(0, Shooter.kI);
+    shooterTopTalon.config_kD(0, Shooter.kD);
   }
 }

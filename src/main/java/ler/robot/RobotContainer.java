@@ -29,7 +29,7 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
  */
 public class RobotContainer {
   // The robot's subsystems
-  private final Drivetrain drivetrain = new Drivetrain();
+  final Drivetrain drivetrain = new Drivetrain();
 
   // The autonomous routines
 
@@ -51,7 +51,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    Robot.oi.init(drivetrain);
+    Robot.oi.init(this);
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
