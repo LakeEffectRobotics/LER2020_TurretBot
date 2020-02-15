@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -46,6 +47,7 @@ public final class RobotMap {
     public static final int OPERATOR_CONTROLLER_PORT = 2;
     
     public static final int HALF_SPEED_BUTTON = Button.kBumperRight.value;
+    public static final int LEFT_JOYSTICK_X = Axis.kLeftX.value;
   }
 
   // The motors on the left side of the drive.
@@ -71,7 +73,7 @@ public final class RobotMap {
   public static final DifferentialDrive m_drive = new DifferentialDrive(leftDriveSpark1, rightDriveSpark1);
 
   public static void init(){
-    // Driving logic/following
+    // Driving logic
     leftDriveSpark2.follow(leftDriveSpark1);
     leftDriveSpark3.follow(leftDriveSpark1);
 

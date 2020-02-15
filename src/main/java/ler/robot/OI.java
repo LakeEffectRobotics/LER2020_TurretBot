@@ -7,6 +7,8 @@
 
 package ler.robot;
 
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
+
 import edu.wpi.first.hal.sim.DriverStationSim;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -14,6 +16,7 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import ler.robot.commands.HalveDriveSpeed;
+import ler.robot.commands.TurretMoveCommand;
 import ler.robot.subsystems.Drivetrain;
 
 /**
@@ -25,7 +28,7 @@ public class OI {
     public XboxController driverController = new XboxController(RobotMap.OIConstants.DRIVER_CONTROLLER_PORT);
     public XboxController operatorController = new XboxController(RobotMap.OIConstants.OPERATOR_CONTROLLER_PORT);
 
-    
+    public JoystickButton moveTurretJoystick = new JoystickButton(operatorController, RobotMap.OIConstants.LEFT_JOYSTICK_X);
     public JoystickButton halfSpeedButton = new JoystickButton(driverController, RobotMap.OIConstants.HALF_SPEED_BUTTON);
 
     /**
@@ -47,6 +50,7 @@ public class OI {
         // While holding the shoulder button, drive at half speed
         
         halfSpeedButton.whenHeld(new HalveDriveSpeed(container.drivetrain));
+        //moveTurretJoystick.whenPressed(new TurretMoveCommand(container.turret));
 
     }
 

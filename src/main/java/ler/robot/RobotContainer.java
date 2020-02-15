@@ -17,7 +17,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import ler.robot.RobotMap;
 import ler.robot.commands.DefaultDrive;
 import ler.robot.commands.HalveDriveSpeed;
+import ler.robot.commands.TurretMoveCommand;
 import ler.robot.subsystems.Drivetrain;
+import ler.robot.subsystems.Turret;
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
@@ -30,6 +32,7 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
 public class RobotContainer {
   // The robot's subsystems
   final Drivetrain drivetrain = new Drivetrain();
+  final Turret turret = new Turret();
 
   // The autonomous routines
 
@@ -62,6 +65,12 @@ public class RobotContainer {
             drivetrain,
             () -> Robot.oi.driverController.getY(GenericHID.Hand.kLeft),
             () -> Robot.oi.driverController.getY(GenericHID.Hand.kRight)));
+    
+    turret.setDefaultCommand(
+        new TurretMoveCommand(
+          turret, 
+          () -> Robot.oi.operatorController.getX(GenericHID.Hand.kLeft)));
+    
 
     // Add commands to the autonomous command chooser
     //m_chooser.addOption("Simple Auto", m_simpleAuto);
