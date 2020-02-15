@@ -56,8 +56,8 @@ public class Drivetrain extends SubsystemBase {
     //slow it down
     left *= 0.25;
     right *= 0.25;
-    System.out.println(left);
-    System.out.println(right);
+    //System.out.println(left);
+    //System.out.println(right);
     RobotMap.leftDriveSpark1.set(left);
     RobotMap.rightDriveSpark1.set(right);
   }

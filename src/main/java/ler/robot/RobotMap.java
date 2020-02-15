@@ -35,9 +35,9 @@ public final class RobotMap {
     public static final int RIGHT_DRIVE_SPARK_2 = 6;
     public static final int RIGHT_DRIVE_SPARK_3 = 7;
 
-    public static final int SHOOTER_TOP_TALON = 20;
-    public static final int SHOOTER_BOTTOM_TALON = 19;
-    public static final int TURRET_TALON = 18;
+    public static final int SHOOTER_TOP_TALON = 18;
+    public static final int SHOOTER_BOTTOM_TALON = 11;
+    public static final int TURRET_TALON = 10;
     public static final int TURRET_FEEDER_TALON = 17;
     
   }

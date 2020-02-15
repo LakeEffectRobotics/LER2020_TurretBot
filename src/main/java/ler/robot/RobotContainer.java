@@ -17,8 +17,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import ler.robot.RobotMap;
 import ler.robot.commands.DefaultDrive;
 import ler.robot.commands.HalveDriveSpeed;
+import ler.robot.commands.ShooterCommand;
 import ler.robot.commands.TurretMoveCommand;
 import ler.robot.subsystems.Drivetrain;
+import ler.robot.subsystems.Shooter;
 import ler.robot.subsystems.Turret;
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
@@ -33,7 +35,7 @@ public class RobotContainer {
   // The robot's subsystems
   final Drivetrain drivetrain = new Drivetrain();
   final Turret turret = new Turret();
-
+  final Shooter shooter = new Shooter();
   // The autonomous routines
 
   // A simple auto routine that drives forward a specified distance, and then stops.
@@ -68,14 +70,14 @@ public class RobotContainer {
     
     turret.setDefaultCommand(
         new TurretMoveCommand(
-          turret, 
-          () -> Robot.oi.operatorController.getX(GenericHID.Hand.kLeft)));
+          turret,0.0)); 
+          //() -> Robot.oi.operatorController.getX(GenericHID.Hand.kLeft)));
     
+    shooter.setDefaultCommand(new ShooterCommand(shooter));
 
     // Add commands to the autonomous command chooser
     //m_chooser.addOption("Simple Auto", m_simpleAuto);
     //m_chooser.addOption("Complex Auto", m_complexAuto);
-
     // Put the chooser on the dashboard
     Shuffleboard.getTab("Autonomous").add(autoChooser);
   }

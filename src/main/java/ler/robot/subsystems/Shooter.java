@@ -7,7 +7,10 @@
 
 package ler.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import ler.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
   public static final double kP = 0.25;
@@ -20,8 +23,10 @@ public class Shooter extends SubsystemBase {
 
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+
+  public void setSpeed(double speed){
+    speed = speed*0.75;
+    RobotMap.shooterBottomTalon.set(ControlMode.PercentOutput, speed);
+    RobotMap.shooterTopTalon.set(ControlMode.PercentOutput, -speed);
   }
 }

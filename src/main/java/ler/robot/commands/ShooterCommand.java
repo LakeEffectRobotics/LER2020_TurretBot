@@ -7,14 +7,21 @@
 
 package ler.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import ler.robot.Robot;
+import ler.robot.subsystems.Shooter;
 
 public class ShooterCommand extends CommandBase {
+  
+  Shooter shooter;
   /**
    * Creates a new ShooterCommand.
    */
-  public ShooterCommand() {
+  public ShooterCommand(Shooter s) {
     // Use addRequirements() here to declare subsystem dependencies.
+    shooter = s;
+    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -25,6 +32,7 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    shooter.setSpeed(Robot.oi.operatorController.getTriggerAxis(Hand.kRight));
   }
 
   // Called once the command ends or is interrupted.
