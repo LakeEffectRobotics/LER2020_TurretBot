@@ -37,7 +37,7 @@ public final class RobotMap {
 
     public static final int SHOOTER_TOP_TALON = 18;
     public static final int SHOOTER_BOTTOM_TALON = 11;
-    public static final int TURRET_TALON = 10;
+    public static final int TURRET_TALON = 9;
     public static final int TURRET_FEEDER_TALON = 17;
     
   }
@@ -48,6 +48,8 @@ public final class RobotMap {
     
     public static final int HALF_SPEED_BUTTON = Button.kBumperRight.value;
     public static final int LEFT_JOYSTICK_X = Axis.kLeftX.value;
+
+    public static final int AIMBOT_BUTTON = Button.kBumperRight.value;
   }
 
   // The motors on the left side of the drive.

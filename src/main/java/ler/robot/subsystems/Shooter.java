@@ -25,8 +25,8 @@ public class Shooter extends SubsystemBase {
 
 
   public void setSpeed(double speed){
-    speed = speed*0.75;
-    RobotMap.shooterBottomTalon.set(ControlMode.PercentOutput, speed);
-    RobotMap.shooterTopTalon.set(ControlMode.PercentOutput, -speed);
+    //speed = speed*1;
+    RobotMap.shooterBottomTalon.set(ControlMode.PercentOutput, speed*0.65);
+    RobotMap.shooterTopTalon.set(ControlMode.PercentOutput, -speed*0.80);
   }
 }

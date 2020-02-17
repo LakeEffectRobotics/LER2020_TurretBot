@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import ler.robot.commands.HalveDriveSpeed;
 import ler.robot.commands.TurretMoveCommand;
+import ler.robot.commands.TurretAimCommand;
 import ler.robot.subsystems.Drivetrain;
 
 /**
@@ -30,6 +31,7 @@ public class OI {
 
     public JoystickButton moveTurretJoystick = new JoystickButton(operatorController, RobotMap.OIConstants.LEFT_JOYSTICK_X);
     public JoystickButton halfSpeedButton = new JoystickButton(driverController, RobotMap.OIConstants.HALF_SPEED_BUTTON);
+    public JoystickButton aimbotButton = new JoystickButton(operatorController, RobotMap.OIConstants.AIMBOT_BUTTON);
 
     /**
      * Use this method to define your button->command mappings. Buttons can be
@@ -50,6 +52,7 @@ public class OI {
         // While holding the shoulder button, drive at half speed
         
         halfSpeedButton.whenHeld(new HalveDriveSpeed(container.drivetrain));
+        aimbotButton.whenHeld(new TurretAimCommand(container.turret));
         //moveTurretJoystick.whenPressed(new TurretMoveCommand(container.turret));
 
     }
