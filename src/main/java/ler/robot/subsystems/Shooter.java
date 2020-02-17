@@ -8,6 +8,7 @@
 package ler.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import ler.robot.RobotMap;
@@ -26,7 +27,7 @@ public class Shooter extends SubsystemBase {
 
   public void setSpeed(double speed){
     //speed = speed*1;
-    RobotMap.shooterBottomTalon.set(ControlMode.PercentOutput, speed*0.65);
-    RobotMap.shooterTopTalon.set(ControlMode.PercentOutput, -speed*0.80);
+    RobotMap.shooterBottomSpark.getPIDController().setReference(-speed*0.65, ControlType.kVelocity);
+    RobotMap.shooterTopSpark.getPIDController().setReference(-speed*0.80, ControlType.kVelocity);
   }
 }

@@ -35,8 +35,8 @@ public final class RobotMap {
     public static final int RIGHT_DRIVE_SPARK_2 = 6;
     public static final int RIGHT_DRIVE_SPARK_3 = 7;
 
-    public static final int SHOOTER_TOP_TALON = 18;
-    public static final int SHOOTER_BOTTOM_TALON = 11;
+    public static final int SHOOTER_TOP_SPARK = 18;
+    public static final int SHOOTER_BOTTOM_SPARK = 11;
     public static final int TURRET_TALON = 9;
     public static final int TURRET_FEEDER_TALON = 17;
     
@@ -65,8 +65,8 @@ public final class RobotMap {
 
 
   // Turret motors (shooter, feeder, pivoting)
-  public static final TalonSRX shooterTopTalon = new TalonSRX(DriveConstants.SHOOTER_TOP_TALON);
-  public static final TalonSRX shooterBottomTalon = new TalonSRX(DriveConstants.SHOOTER_BOTTOM_TALON);
+  public static final CANSparkMax shooterTopSpark = new CANSparkMax(DriveConstants.SHOOTER_TOP_SPARK, MotorType.kBrushless);
+  public static final CANSparkMax shooterBottomSpark = new CANSparkMax(DriveConstants.SHOOTER_BOTTOM_SPARK, MotorType.kBrushless);
   public static final TalonSRX turretMotor = new TalonSRX(DriveConstants.TURRET_TALON);
   public static final TalonSRX shooterFeederTalon = new TalonSRX(DriveConstants.TURRET_FEEDER_TALON);
 
@@ -91,14 +91,14 @@ public final class RobotMap {
     turretMotor.config_kI(0, Turret.kI);
     turretMotor.config_kD(0, Turret.kD);
 
-    shooterTopTalon.config_kF(0, Shooter.kF);
-    shooterTopTalon.config_kP(0, Shooter.kP);
-    shooterTopTalon.config_kI(0, Shooter.kI);
-    shooterTopTalon.config_kD(0, Shooter.kD);
+    shooterTopSpark.getPIDController().setFF(Shooter.kF);
+    shooterTopSpark.getPIDController().setP(Shooter.kP);
+    shooterTopSpark.getPIDController().setI(Shooter.kI);
+    shooterTopSpark.getPIDController().setD(Shooter.kD);
 
-    shooterTopTalon.config_kF(0, Shooter.kF);
-    shooterTopTalon.config_kP(0, Shooter.kP);
-    shooterTopTalon.config_kI(0, Shooter.kI);
-    shooterTopTalon.config_kD(0, Shooter.kD);
+    shooterBottomSpark.getPIDController().setFF(Shooter.kF);
+    shooterBottomSpark.getPIDController().setP(Shooter.kP);
+    shooterBottomSpark.getPIDController().setI(Shooter.kI);
+    shooterBottomSpark.getPIDController().setD(Shooter.kD);
   }
 }
