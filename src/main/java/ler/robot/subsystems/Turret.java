@@ -36,7 +36,7 @@ public class Turret extends SubsystemBase {
 
   public void move(double speed){
     speed *= 0.2;
-    RobotMap.turretMotor.set(ControlMode.PercentOutput, speed);
+    RobotMap.turretRotateTalon.set(ControlMode.PercentOutput, speed);
   }
 
   public void limeligntAim(){
@@ -46,7 +46,7 @@ public class Turret extends SubsystemBase {
 
     double limelightSpeed = pidController.calculate(x);
     
-    RobotMap.turretMotor.set(ControlMode.PercentOutput, limelightSpeed);
+    RobotMap.turretRotateTalon.set(ControlMode.PercentOutput, limelightSpeed);
   }
 
   @Override

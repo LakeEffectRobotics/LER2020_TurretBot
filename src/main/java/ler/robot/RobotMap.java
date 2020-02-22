@@ -27,19 +27,30 @@ import ler.robot.subsystems.Shooter;
  * constants are needed, to reduce verbosity.
  */
 public final class RobotMap {
-  public static final class DriveConstants {
+  public static final class CANConstants {
     public static final int LEFT_DRIVE_SPARK_1 = 2;
     public static final int LEFT_DRIVE_SPARK_2 = 3;
     public static final int LEFT_DRIVE_SPARK_3 = 4;
+    
     public static final int RIGHT_DRIVE_SPARK_1 = 5;
     public static final int RIGHT_DRIVE_SPARK_2 = 6;
     public static final int RIGHT_DRIVE_SPARK_3 = 7;
 
-    public static final int SHOOTER_TOP_SPARK = 18;
-    public static final int SHOOTER_BOTTOM_SPARK = 11;
-    public static final int TURRET_TALON = 9;
-    public static final int TURRET_FEEDER_TALON = 17;
-    
+
+    public static final int INTAKE_TALON = 8;
+
+
+    public static final int SHOOTER_BOTTOM_SPARK = 9;
+    public static final int SHOOTER_TOP_SPARK = 10;
+    public static final int TURRET_FEEDER_TALON = 11;
+    public static final int TURRET_ROTATE_TALON = 12;
+
+
+    public static final int CLIMBER_FALCON = 13;
+
+
+    public static final int CHUTE_TALON = 14;
+    public static final int HOPPER_TALON = 15;
   }
 
   public static final class OIConstants {
@@ -53,23 +64,23 @@ public final class RobotMap {
   }
 
   // The motors on the left side of the drive.
-  public static final CANSparkMax leftDriveSpark1 = new CANSparkMax(DriveConstants.LEFT_DRIVE_SPARK_1, MotorType.kBrushless);
-  public static final CANSparkMax leftDriveSpark2 = new CANSparkMax(DriveConstants.LEFT_DRIVE_SPARK_2, MotorType.kBrushless);
-  public static final CANSparkMax leftDriveSpark3 = new CANSparkMax(DriveConstants.LEFT_DRIVE_SPARK_3, MotorType.kBrushless);
+  public static final CANSparkMax leftDriveSpark1 = new CANSparkMax(CANConstants.LEFT_DRIVE_SPARK_1, MotorType.kBrushless);
+  public static final CANSparkMax leftDriveSpark2 = new CANSparkMax(CANConstants.LEFT_DRIVE_SPARK_2, MotorType.kBrushless);
+  public static final CANSparkMax leftDriveSpark3 = new CANSparkMax(CANConstants.LEFT_DRIVE_SPARK_3, MotorType.kBrushless);
   
 
   // The motors on the right side of the drive.
-  public static final CANSparkMax rightDriveSpark1 = new CANSparkMax(DriveConstants.RIGHT_DRIVE_SPARK_1, MotorType.kBrushless);
-  public static final CANSparkMax rightDriveSpark2 = new CANSparkMax(DriveConstants.RIGHT_DRIVE_SPARK_2, MotorType.kBrushless);
-  public static final CANSparkMax rightDriveSpark3 = new CANSparkMax(DriveConstants.RIGHT_DRIVE_SPARK_3, MotorType.kBrushless);
+  public static final CANSparkMax rightDriveSpark1 = new CANSparkMax(CANConstants.RIGHT_DRIVE_SPARK_1, MotorType.kBrushless);
+  public static final CANSparkMax rightDriveSpark2 = new CANSparkMax(CANConstants.RIGHT_DRIVE_SPARK_2, MotorType.kBrushless);
+  public static final CANSparkMax rightDriveSpark3 = new CANSparkMax(CANConstants.RIGHT_DRIVE_SPARK_3, MotorType.kBrushless);
 
 
   // Turret motors (shooter, feeder, pivoting)
-  public static final CANSparkMax shooterTopSpark = new CANSparkMax(DriveConstants.SHOOTER_TOP_SPARK, MotorType.kBrushless);
-  public static final CANSparkMax shooterBottomSpark = new CANSparkMax(DriveConstants.SHOOTER_BOTTOM_SPARK, MotorType.kBrushless);
-  public static final TalonSRX turretMotor = new TalonSRX(DriveConstants.TURRET_TALON);
-  public static final TalonSRX shooterFeederTalon = new TalonSRX(DriveConstants.TURRET_FEEDER_TALON);
-
+  public static final CANSparkMax shooterBottomSpark = new CANSparkMax(CANConstants.SHOOTER_BOTTOM_SPARK, MotorType.kBrushless);
+  public static final CANSparkMax shooterTopSpark = new CANSparkMax(CANConstants.SHOOTER_TOP_SPARK, MotorType.kBrushless);
+  public static final TalonSRX shooterFeederTalon = new TalonSRX(CANConstants.TURRET_FEEDER_TALON);
+  public static final TalonSRX turretRotateTalon = new TalonSRX(CANConstants.TURRET_ROTATE_TALON);
+  
 
   // The robot's drive
   public static final DifferentialDrive m_drive = new DifferentialDrive(leftDriveSpark1, rightDriveSpark1);
@@ -86,10 +97,10 @@ public final class RobotMap {
     rightDriveSpark3.follow(rightDriveSpark1);
 
     // Turret motors PIDS
-    turretMotor.config_kF(0, Turret.kF);
-    turretMotor.config_kP(0, Turret.kP);
-    turretMotor.config_kI(0, Turret.kI);
-    turretMotor.config_kD(0, Turret.kD);
+    turretRotateTalon.config_kF(0, Turret.kF);
+    turretRotateTalon.config_kP(0, Turret.kP);
+    turretRotateTalon.config_kI(0, Turret.kI);
+    turretRotateTalon.config_kD(0, Turret.kD);
 
     shooterTopSpark.getPIDController().setFF(Shooter.kF);
     shooterTopSpark.getPIDController().setP(Shooter.kP);
