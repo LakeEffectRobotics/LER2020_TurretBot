@@ -27,13 +27,13 @@ public class TurretMoveCommand extends CommandBase {
   public TurretMoveCommand(Turret subsystem, double rotation) {
     turret = subsystem;
     this.rotation = rotation;
-    //System.out.println("this.rotation:  " + this.rotation);
+    System.out.println("this.rotation:  " + this.rotation);
     addRequirements(turret);
   }
 
   @Override
   public void execute() {
-    rotation = -Robot.oi.operatorController.getX(GenericHID.Hand.kLeft);
+    rotation = Robot.oi.operatorController.getX(GenericHID.Hand.kLeft);
     turret.move(rotation);
     System.out.println(rotation);
     System.out.println(Robot.oi.operatorController.getX(GenericHID.Hand.kLeft));

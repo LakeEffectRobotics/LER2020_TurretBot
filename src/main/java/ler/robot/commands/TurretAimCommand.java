@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import ler.robot.subsystems.Turret;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 public class TurretAimCommand extends CommandBase {
   private Turret turret;
   /**
@@ -41,6 +44,13 @@ public class TurretAimCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //dont copy and paste
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    double x = table.getEntry("tx").getDouble(0.0);
+
+    if(Math.abs(x) < 0.05){
+      //return true;
+    }
     return false;
   }
 }

@@ -20,9 +20,9 @@ import ler.robot.OI;
 
 public class Turret extends SubsystemBase {
   
-  public static final double kP = 0.25;
-  public static final double kI = 0.001;
-  public static final double kD = 20;
+  public static final double kP = 0.05;
+  public static final double kI = 0.1;
+  public static final double kD = 0.00005;
   public static final double kF = 1;
 
   public static final double SPEED = 0.2;
@@ -46,7 +46,7 @@ public class Turret extends SubsystemBase {
 
     double limelightSpeed = pidController.calculate(x);
     
-    RobotMap.turretMotor.set(ControlMode.PercentOutput, limelightSpeed);
+    RobotMap.turretMotor.set(ControlMode.PercentOutput, -limelightSpeed);
   }
 
   @Override

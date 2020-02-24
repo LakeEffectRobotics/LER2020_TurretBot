@@ -30,4 +30,16 @@ public class Shooter extends SubsystemBase {
     RobotMap.shooterBottomSpark.getPIDController().setReference(-speed*0.65, ControlType.kVelocity);
     RobotMap.shooterTopSpark.getPIDController().setReference(-speed*0.80, ControlType.kVelocity);
   }
+
+  public double getBottomSpeed(){
+    return RobotMap.shooterBottomSpark.getEncoder().getVelocity();
+  }
+
+  public double getTopSpeed(){
+    return RobotMap.shooterTopSpark.getEncoder().getVelocity();
+  }
+
+  public double getAverageSpeed(){
+    return (getBottomSpeed() + getTopSpeed()) / 2;
+  }
 }
