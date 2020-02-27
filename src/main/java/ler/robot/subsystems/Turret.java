@@ -39,7 +39,7 @@ public class Turret extends SubsystemBase {
     RobotMap.turretRotateTalon.set(ControlMode.PercentOutput, speed);
   }
 
-  public void limeligntAim(){
+  public void limelightAim(){
     //get limelight
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     double x = table.getEntry("tx").getDouble(0.0);

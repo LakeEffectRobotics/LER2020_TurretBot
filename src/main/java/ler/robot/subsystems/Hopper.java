@@ -7,15 +7,22 @@
 
 package ler.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import ler.robot.RobotMap;
+
 
 
 /**
  * Add your docs here.
  */
-public class Intake extends SubsystemBase {
-
+public class Hopper {
     
+    public void driveHopper() {
+
+        RobotMap.hopperTalon.set(ControlMode.PercentOutput, 0.6);
+
+    }
 
 }

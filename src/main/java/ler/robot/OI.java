@@ -15,10 +15,13 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import ler.robot.commands.ClimberCommand;
 import ler.robot.commands.HalveDriveSpeed;
 import ler.robot.commands.TurretMoveCommand;
 import ler.robot.commands.TurretAimCommand;
 import ler.robot.subsystems.Drivetrain;
+import ler.robot.subsystems.Climber;
+
 
 /**
  * Operator Interface, used to map buttons with the controllers
@@ -32,6 +35,8 @@ public class OI {
     public JoystickButton moveTurretJoystick = new JoystickButton(operatorController, RobotMap.OIConstants.LEFT_JOYSTICK_X);
     public JoystickButton halfSpeedButton = new JoystickButton(driverController, RobotMap.OIConstants.HALF_SPEED_BUTTON);
     public JoystickButton aimbotButton = new JoystickButton(operatorController, RobotMap.OIConstants.AIMBOT_BUTTON);
+
+    public JoystickButton elevatorToggleButton = new JoystickButton(operatorController, RobotMap.OIConstants.ELEVATOR_TOGGLE_BUTTON);
 
     /**
      * Use this method to define your button->command mappings. Buttons can be
@@ -53,6 +58,8 @@ public class OI {
         
         halfSpeedButton.whenHeld(new HalveDriveSpeed(container.drivetrain));
         aimbotButton.whenHeld(new TurretAimCommand(container.turret));
+
+        elevatorToggleButton.whenPressed(new ClimberCommand(container.climber));
         //moveTurretJoystick.whenPressed(new TurretMoveCommand(container.turret));
 
     }

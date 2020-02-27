@@ -10,7 +10,8 @@ package ler.robot;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -53,6 +54,16 @@ public final class RobotMap {
     public static final int HOPPER_TALON = 15;
   }
 
+  public static final class SOLENOIDConstants {
+    
+    public static final int CLIMBER_DOWN_POSITION = 0;
+    public static final int CLIMBER_UP_POSITION = 1;
+
+    public static final int INTAKE_DOWN_POSITION = 2;
+    public static final int INTAKE_UP_POSITION = 3;
+
+  }
+
   public static final class OIConstants {
     public static final int DRIVER_CONTROLLER_PORT = 1;
     public static final int OPERATOR_CONTROLLER_PORT = 2;
@@ -61,6 +72,8 @@ public final class RobotMap {
     public static final int LEFT_JOYSTICK_X = Axis.kLeftX.value;
 
     public static final int AIMBOT_BUTTON = Button.kBumperRight.value;
+
+    public static final int ELEVATOR_TOGGLE_BUTTON = Button.kStart.value;
   }
 
   // The motors on the left side of the drive.
@@ -80,12 +93,24 @@ public final class RobotMap {
   public static final CANSparkMax shooterTopSpark = new CANSparkMax(CANConstants.SHOOTER_TOP_SPARK, MotorType.kBrushless);
   public static final TalonSRX shooterFeederTalon = new TalonSRX(CANConstants.TURRET_FEEDER_TALON);
   public static final TalonSRX turretRotateTalon = new TalonSRX(CANConstants.TURRET_ROTATE_TALON);
+
+  // Ball control mechanisms
+  public static final TalonSRX chuteTalon = new TalonSRX(CANConstants.CHUTE_TALON);
+  public static final TalonSRX hopperTalon = new TalonSRX(CANConstants.HOPPER_TALON);
+
+
+
+  // Solenoids (Climber, Intake)
+  public static DoubleSolenoid climber_position_solenoid = new DoubleSolenoid(SOLENOIDConstants.CLIMBER_DOWN_POSITION, SOLENOIDConstants.CLIMBER_UP_POSITION);
+
+  public static DoubleSolenoid intake_position_solenoid = new DoubleSolenoid(SOLENOIDConstants.INTAKE_DOWN_POSITION, SOLENOIDConstants.INTAKE_UP_POSITION);
   
 
   // The robot's drive
   public static final DifferentialDrive m_drive = new DifferentialDrive(leftDriveSpark1, rightDriveSpark1);
 
   public static void init(){
+    
     // Driving logic
     leftDriveSpark2.follow(leftDriveSpark1);
     leftDriveSpark3.follow(leftDriveSpark1);

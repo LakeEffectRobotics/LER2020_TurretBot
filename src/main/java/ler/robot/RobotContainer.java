@@ -22,6 +22,8 @@ import ler.robot.commands.TurretMoveCommand;
 import ler.robot.subsystems.Drivetrain;
 import ler.robot.subsystems.Shooter;
 import ler.robot.subsystems.Turret;
+import ler.robot.subsystems.Climber;
+
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
@@ -36,6 +38,7 @@ public class RobotContainer {
   final Drivetrain drivetrain = new Drivetrain();
   final Turret turret = new Turret();
   final Shooter shooter = new Shooter();
+  final Climber climber = new Climber();
 
   // A chooser for autonomous commands
   SendableChooser<Command> autoChooser = new SendableChooser<>();

@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -7,30 +7,34 @@
 
 package ler.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import ler.robot.Robot;
+import ler.robot.subsystems.Climber;
 
-import ler.robot.subsystems.Turret;
+public class ClimberCommand extends CommandBase {
+  
+  Climber climber;
 
-public class TurretAimCommand extends CommandBase {
-  private Turret turret;
+  boolean isRaised = false;
   /**
-   * Creates a new TurretStopCommand.
+   * Creates a new ShooterCommand.
    */
-  public TurretAimCommand(Turret turret) {
-    this.turret = turret;
-    addRequirements(turret);
+  public ClimberCommand(Climber c) {
+    climber = c;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    climber.raiseElevator();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    turret.limelightAim();
+
   }
 
   // Called once the command ends or is interrupted.

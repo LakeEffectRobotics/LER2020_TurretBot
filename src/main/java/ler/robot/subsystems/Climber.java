@@ -9,6 +9,7 @@ package ler.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import ler.robot.RobotMap;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 
 /**
@@ -16,13 +17,11 @@ import ler.robot.RobotMap;
  */
 public class Climber extends SubsystemBase {
 
+    public void raiseElevator() {
+        RobotMap.climber_position_solenoid.set(DoubleSolenoid.Value.kForward);
+    }
 
-
-
-
-
-
-
-
-
+    public void lowerElevator() {
+        RobotMap.climber_position_solenoid.set(DoubleSolenoid.Value.kReverse);
+    }
 }
