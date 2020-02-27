@@ -18,6 +18,12 @@ public class Shooter extends SubsystemBase {
   public static final double kI = 0.001;
   public static final double kD = 20;
   public static final double kF = 1;
+
+public static final double SPIN_CONSTANT = 0.8; 
+
+  public static final double SHOOTER_TARGET_SPEED = 8500;
+  public static final double SHOOTER_TOP_TARGET_SPEED = SHOOTER_TARGET_SPEED;
+  public static final double SHOOTER_BOTTOM_TARGET_SPEED = SHOOTER_TARGET_SPEED*SPIN_CONSTANT;
   
   
   public Shooter() {
@@ -29,5 +35,12 @@ public class Shooter extends SubsystemBase {
     //speed = speed*1;
     RobotMap.shooterBottomSpark.getPIDController().setReference(-speed*0.65, ControlType.kVelocity);
     RobotMap.shooterTopSpark.getPIDController().setReference(-speed*0.80, ControlType.kVelocity);
+  }
+
+  public double getTopSparkSpeed() {
+    return(RobotMap.shooterTopSpark.getEncoder().getVelocity());
+  }
+  public double getBottomSparkSpeed() {
+    return(RobotMap.shooterBottomSpark.getEncoder().getVelocity());
   }
 }

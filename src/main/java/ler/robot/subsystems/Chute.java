@@ -17,9 +17,9 @@ import ler.robot.RobotMap;
 
 public class Chute {
 
-    public void driveChute() {
+    public void driveChute(double speed) {
 
-        RobotMap.chuteTalon.set(ControlMode.PercentOutput, 0.6);
+        RobotMap.chuteTalon.set(ControlMode.PercentOutput, speed);
 
     }
 
