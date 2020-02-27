@@ -15,7 +15,7 @@ import ler.robot.RobotMap;
 
 
 
-public class Chute {
+public class Chute extends SubsystemBase{
 
     public void driveChute(double speed) {
 

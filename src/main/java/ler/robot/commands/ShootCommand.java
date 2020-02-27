@@ -29,6 +29,7 @@ public class ShootCommand extends CommandBase {
     chute = c;
     //Add requiremnts - chute
     addRequirements(shooter);
+    addRequirements(chute);
   }
 
   // Called when the command is initially scheduled.
