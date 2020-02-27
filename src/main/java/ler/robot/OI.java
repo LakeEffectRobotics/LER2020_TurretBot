@@ -9,6 +9,7 @@ package ler.robot;
 
 import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
+import ler.robot.RobotMap;
 import edu.wpi.first.hal.sim.DriverStationSim;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -21,6 +22,7 @@ import ler.robot.commands.TurretMoveCommand;
 import ler.robot.commands.TurretAimCommand;
 import ler.robot.subsystems.Drivetrain;
 import ler.robot.subsystems.Climber;
+import ler.robot.commands.ClimberWinchCommand;
 
 
 /**
@@ -36,7 +38,8 @@ public class OI {
     public JoystickButton halfSpeedButton = new JoystickButton(driverController, RobotMap.OIConstants.HALF_SPEED_BUTTON);
     public JoystickButton aimbotButton = new JoystickButton(operatorController, RobotMap.OIConstants.AIMBOT_BUTTON);
 
-    public JoystickButton elevatorToggleButton = new JoystickButton(operatorController, RobotMap.OIConstants.ELEVATOR_TOGGLE_BUTTON);
+    public JoystickButton climberToggleButton = new JoystickButton(operatorController, RobotMap.OIConstants.CLIMBER_TOGGLE_BUTTON);
+    public JoystickButton winchControlButton = new JoystickButton(operatorController, RobotMap.OIConstants.WINCH_CONTROL_BUTTON);
 
     /**
      * Use this method to define your button->command mappings. Buttons can be
@@ -59,7 +62,9 @@ public class OI {
         halfSpeedButton.whenHeld(new HalveDriveSpeed(container.drivetrain));
         aimbotButton.whenHeld(new TurretAimCommand(container.turret));
 
-        elevatorToggleButton.whenPressed(new ClimberCommand(container.climber));
+        climberToggleButton.whenPressed(new ClimberCommand(container.climber));
+        winchControlButton.whenHeld(new ClimberWinchCommand(container.climber));       
+
         //moveTurretJoystick.whenPressed(new TurretMoveCommand(container.turret));
 
     }

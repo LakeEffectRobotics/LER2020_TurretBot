@@ -7,6 +7,7 @@
 
 package ler.robot;
 
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -47,7 +48,7 @@ public final class RobotMap {
     public static final int TURRET_ROTATE_TALON = 12;
 
 
-    public static final int CLIMBER_FALCON = 13;
+    public static final int WINCH_FALCON = 13;
 
 
     public static final int CHUTE_TALON = 14;
@@ -73,7 +74,9 @@ public final class RobotMap {
 
     public static final int AIMBOT_BUTTON = Button.kBumperRight.value;
 
-    public static final int ELEVATOR_TOGGLE_BUTTON = Button.kStart.value;
+    public static final int CLIMBER_TOGGLE_BUTTON = Button.kStart.value;
+    public static final int WINCH_CONTROL_BUTTON = Button.kBack.value;
+
   }
 
   // The motors on the left side of the drive.
@@ -97,6 +100,9 @@ public final class RobotMap {
   // Ball control mechanisms
   public static final TalonSRX chuteTalon = new TalonSRX(CANConstants.CHUTE_TALON);
   public static final TalonSRX hopperTalon = new TalonSRX(CANConstants.HOPPER_TALON);
+
+  // Winch control
+  public static final TalonFX winchFalcon = new TalonFX(CANConstants.WINCH_FALCON);
 
 
 

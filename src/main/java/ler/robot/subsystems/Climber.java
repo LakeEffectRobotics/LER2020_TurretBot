@@ -10,6 +10,7 @@ package ler.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import ler.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 
 /**
@@ -23,5 +24,9 @@ public class Climber extends SubsystemBase {
 
     public void lowerElevator() {
         RobotMap.climber_position_solenoid.set(DoubleSolenoid.Value.kReverse);
+    }
+
+    public void driveWinch(double speed) {
+        RobotMap.winchFalcon.set(ControlMode.PercentOutput, speed);
     }
 }
