@@ -7,8 +7,12 @@
 
 package ler.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import ler.robot.RobotMap;
+
 
 
 /**
@@ -16,6 +20,18 @@ import ler.robot.RobotMap;
  */
 public class Intake extends SubsystemBase {
 
-    
+    public void driveIntake(double speed) {
+        RobotMap.intakeTalon.set(ControlMode.PercentOutput, speed);
+    }
+
+    public void raiseIntake() {
+        RobotMap.intake_position_solenoid.set(Value.kForward);
+
+    }
+
+    public void lowerIntake() {
+        RobotMap.intake_position_solenoid.set(Value.kForward);
+        
+    }
 
 }

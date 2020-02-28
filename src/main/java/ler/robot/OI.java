@@ -38,6 +38,8 @@ public class OI {
     public JoystickButton halfSpeedButton = new JoystickButton(driverController, RobotMap.OIConstants.HALF_SPEED_BUTTON);
     public JoystickButton aimbotButton = new JoystickButton(operatorController, RobotMap.OIConstants.AIMBOT_BUTTON);
 
+    //Create intake trigger here 
+
     public JoystickButton climberToggleButton = new JoystickButton(operatorController, RobotMap.OIConstants.CLIMBER_TOGGLE_BUTTON);
     public JoystickButton winchControlButton = new JoystickButton(operatorController, RobotMap.OIConstants.WINCH_CONTROL_BUTTON);
 

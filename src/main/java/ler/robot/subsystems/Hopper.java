@@ -17,11 +17,11 @@ import ler.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class Hopper {
+public class Hopper extends SubsystemBase{
     
-    public void driveHopper() {
+    public void driveHopper(double speed) {
 
-        RobotMap.hopperTalon.set(ControlMode.PercentOutput, 0.6);
+        RobotMap.hopperTalon.set(ControlMode.PercentOutput, speed);
 
     }
 

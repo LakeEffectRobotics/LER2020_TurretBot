@@ -72,6 +72,9 @@ public final class RobotMap {
     public static final int HALF_SPEED_BUTTON = Button.kBumperRight.value;
     public static final int LEFT_JOYSTICK_X = Axis.kLeftX.value;
 
+    public static final int INTAKE_BUTTON = Axis.kRightTrigger.value;
+    public static final int INTAKE_HEIGHT_BUTTON = Button.kStickRight.value;
+
     public static final int AIMBOT_BUTTON = Button.kBumperRight.value;
 
     public static final int CLIMBER_TOGGLE_BUTTON = Button.kStart.value;
@@ -90,6 +93,8 @@ public final class RobotMap {
   public static final CANSparkMax rightDriveSpark2 = new CANSparkMax(CANConstants.RIGHT_DRIVE_SPARK_2, MotorType.kBrushless);
   public static final CANSparkMax rightDriveSpark3 = new CANSparkMax(CANConstants.RIGHT_DRIVE_SPARK_3, MotorType.kBrushless);
 
+  //The intake motor
+  public static final TalonSRX intakeTalon = new TalonSRX(CANConstants.INTAKE_TALON);
 
   // Turret motors (shooter, feeder, pivoting)
   public static final CANSparkMax shooterBottomSpark = new CANSparkMax(CANConstants.SHOOTER_BOTTOM_SPARK, MotorType.kBrushless);
