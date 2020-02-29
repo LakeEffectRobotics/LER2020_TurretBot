@@ -24,6 +24,7 @@ import ler.robot.subsystems.Shooter;
 import ler.robot.subsystems.Turret;
 import ler.robot.subsystems.Climber;
 import ler.robot.subsystems.Chute;
+import ler.robot.subsystems.Intake;
 
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
@@ -41,6 +42,7 @@ public class RobotContainer {
   final Shooter shooter = new Shooter();
   final Climber climber = new Climber();
   final Chute chute = new Chute();
+  final Intake intake = new Intake();
 
   // A chooser for autonomous commands
   SendableChooser<Command> autoChooser = new SendableChooser<>();

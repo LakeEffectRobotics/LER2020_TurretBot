@@ -11,6 +11,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.XboxController.Axis;
@@ -116,6 +118,7 @@ public final class RobotMap {
 
   public static DoubleSolenoid intake_position_solenoid = new DoubleSolenoid(SOLENOIDConstants.INTAKE_DOWN_POSITION, SOLENOIDConstants.INTAKE_UP_POSITION);
   
+  public static Compressor c = new Compressor(01);
 
   // The robot's drive
   public static final DifferentialDrive m_drive = new DifferentialDrive(leftDriveSpark1, rightDriveSpark1);
