@@ -16,7 +16,7 @@ public class ClimberCommand extends CommandBase {
   
   Climber climber;
 
-  boolean isRaised = false;
+
   /**
    * Creates a new ShooterCommand.
    */
@@ -28,13 +28,13 @@ public class ClimberCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(isRaised) {
-      climber.lowerElevator();
-      isRaised = false;
+    if(climber.isRaised) {
+      climber.lowerClimber();
+      climber.isRaised = false;
     } 
     else {
-    climber.raiseElevator();
-    isRaised = true;
+    climber.raiseClimber();
+    climber.isRaised = true;
     }
   
   }

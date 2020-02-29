@@ -21,9 +21,14 @@ import ler.robot.commands.HalveDriveSpeed;
 import ler.robot.commands.TurretMoveCommand;
 import ler.robot.commands.TurretAimCommand;
 import ler.robot.commands.IntakeArmCommand;
+import ler.robot.commands.IntakeCommand;
+import ler.robot.commands.ClimberWinchCommand;
+
 import ler.robot.subsystems.Drivetrain;
 import ler.robot.subsystems.Climber;
-import ler.robot.commands.ClimberWinchCommand;
+import ler.robot.subsystems.Intake;
+import ler.robot.subsystems.Chute;
+import ler.robot.subsystems.Hopper;
 
 
 /**
@@ -39,6 +44,7 @@ public class OI {
     public JoystickButton halfSpeedButton = new JoystickButton(driverController, RobotMap.OIConstants.HALF_SPEED_BUTTON);
     public JoystickButton aimbotButton = new JoystickButton(operatorController, RobotMap.OIConstants.AIMBOT_BUTTON);
     public JoystickButton intakeHeightButton = new JoystickButton(operatorController, RobotMap.OIConstants.INTAKE_HEIGHT_BUTTON);
+    public JoystickButton intakeButton = new JoystickButton(operatorController, RobotMap.OIConstants.INTAKE_BUTTON);
 
     //Create intake trigger here 
 
@@ -70,6 +76,7 @@ public class OI {
         winchControlButton.whenHeld(new ClimberWinchCommand(container.climber));  
         
         intakeHeightButton.whenReleased(new IntakeArmCommand(container.intake));
+        intakeButton.whileHeld(new IntakeCommand(container.intake, container.hopper, container.chute));
 
         //moveTurretJoystick.whenPressed(new TurretMoveCommand(container.turret));
 

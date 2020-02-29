@@ -16,7 +16,6 @@ public class ClimberWinchCommand extends CommandBase {
   
   Climber climber;
 
-  boolean isRaised = false;
   /**
    * Creates a new ShooterCommand.
    */

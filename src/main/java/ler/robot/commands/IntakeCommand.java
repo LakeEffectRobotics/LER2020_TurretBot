@@ -27,6 +27,14 @@ public class IntakeCommand extends CommandBase {
   Hopper hopper;
   Chute chute;
 
+  private final double INTAKE_RAMP_DOWN = 0.8;
+  private final double INTAKE_MAXIMUM_SPEED = 0.4;
+
+  private final double HOPPER_TARGET_SPEED = 0.2;
+  private final double CHUTE_TARGET_SPEED = 0.2;
+
+  double intakeSpeed;
+
   /**
    * Creates a new ShooterCommand.
    */
@@ -47,9 +55,16 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.driveIntake(0.6);
-    hopper.driveHopper(0.6);
-    chute.driveChute(0.2);
+
+    intakeSpeed = Robot.oi.operatorController.getTriggerAxis(Hand.kRight)*INTAKE_RAMP_DOWN;
+    if(intakeSpeed > INTAKE_MAXIMUM_SPEED) {
+      intakeSpeed = INTAKE_MAXIMUM_SPEED;
+    }
+    
+
+    intake.driveIntake(intakeSpeed);
+    hopper.driveHopper(HOPPER_TARGET_SPEED);
+    chute.driveChute(CHUTE_TARGET_SPEED);
   }
 
   // Called once the command ends or is interrupted.

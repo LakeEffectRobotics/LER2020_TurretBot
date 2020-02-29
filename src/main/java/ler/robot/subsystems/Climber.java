@@ -20,11 +20,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
  */
 public class Climber extends SubsystemBase {
 
-    public void raiseElevator() {
+    public boolean isRaised = false;
+
+
+    public void raiseClimber() {
         RobotMap.climber_position_solenoid.set(Value.kForward);
     }
 
-    public void lowerElevator() {
+    public void lowerClimber() {
         RobotMap.climber_position_solenoid.set(Value.kReverse);
     }
 
