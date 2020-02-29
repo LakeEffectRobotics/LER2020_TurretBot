@@ -8,12 +8,13 @@
 package ler.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import ler.robot.subsystems.Intake;
 
-public class IntakeArmCommand extends CommandBase {
+public class IntakeArmCommand extends InstantCommand {
     Intake intake;
 
-    boolean isDeployed = false;
+    
 
   /**
    * Creates a new TurretCommand.
@@ -32,11 +33,16 @@ public class IntakeArmCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if(isDeployed) {
-          intake.raiseIntake();
+      if(!intake.isDeployed) {
+          intake.retractIntake();
+          System.out.println("EXTENDO PISTONO");
+          intake.isDeployed = true;
       }
       else {
-        intake.lowerIntake();
+        intake.extendIntake();
+        System.out.println("DEXTENDO PISTONO");
+
+        intake.isDeployed = false;
       }
   }
 
@@ -45,9 +51,4 @@ public class IntakeArmCommand extends CommandBase {
   public void end(boolean interrupted) {
   }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
 }

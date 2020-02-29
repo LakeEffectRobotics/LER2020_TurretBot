@@ -35,8 +35,8 @@ public class TurretMoveCommand extends CommandBase {
   public void execute() {
     rotation = -Robot.oi.operatorController.getX(GenericHID.Hand.kLeft);
     turret.move(rotation);
-    System.out.println(rotation);
-    System.out.println(Robot.oi.operatorController.getX(GenericHID.Hand.kLeft));
+    //System.out.println(rotation);
+    //System.out.println(Robot.oi.operatorController.getX(GenericHID.Hand.kLeft));
 
 
   }

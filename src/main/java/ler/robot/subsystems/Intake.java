@@ -14,23 +14,24 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import ler.robot.RobotMap;
 
 
-
 /**
  * Add your docs here.
  */
 public class Intake extends SubsystemBase {
 
+    public boolean isDeployed = false;
+
     public void driveIntake(double speed) {
         RobotMap.intakeTalon.set(ControlMode.PercentOutput, speed);
     }
 
-    public void raiseIntake() {
+    public void retractIntake() {
         RobotMap.intake_position_solenoid.set(Value.kForward);
 
     }
 
-    public void lowerIntake() {
-        RobotMap.intake_position_solenoid.set(Value.kForward);
+    public void extendIntake() {
+        RobotMap.intake_position_solenoid.set(Value.kReverse);
         
     }
 
