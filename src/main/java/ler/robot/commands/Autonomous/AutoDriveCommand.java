@@ -7,27 +7,37 @@
 
 package ler.robot.commands.Autonomous;
 
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import ler.robot.RobotMap;
 import ler.robot.subsystems.Drivetrain;
 
 
 public class AutoDriveCommand extends CommandBase {
+
+  Drivetrain drivetrain;
+  Gyro gyro;
+
+
   /**
    * Creates a new AutoDriveCommand.
    */
-  public AutoDriveCommand() {
+  public AutoDriveCommand(Drivetrain d, Gyro g) {
+    drivetrain = d;
+    gyro = g;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
   }
 
   // Called once the command ends or is interrupted.
