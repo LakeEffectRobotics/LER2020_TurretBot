@@ -16,13 +16,8 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import ler.robot.commands.ClimberCommand;
-import ler.robot.commands.HalveDriveSpeed;
-import ler.robot.commands.TurretMoveCommand;
-import ler.robot.commands.TurretAimCommand;
-import ler.robot.commands.IntakeArmCommand;
-import ler.robot.commands.IntakeCommand;
-import ler.robot.commands.ClimberWinchCommand;
+import ler.robot.commands.*;
+import ler.robot.commands.instant.*;
 
 import ler.robot.subsystems.Drivetrain;
 import ler.robot.subsystems.Climber;
