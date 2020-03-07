@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package ler.robot.commands;
+package ler.robot.commands.instant;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -28,27 +28,16 @@ public class IntakeArmCommand extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    if(!intake.isDeployed) {
+      intake.retractIntake();
+      System.out.println("EXTENDO PISTONO");
+      intake.isDeployed = true;
+    }
+    else {
+      intake.extendIntake();
+      System.out.println("DEXTENDO PISTONO");
+
+      intake.isDeployed = false;
+    }
   }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-      if(!intake.isDeployed) {
-          intake.retractIntake();
-          System.out.println("EXTENDO PISTONO");
-          intake.isDeployed = true;
-      }
-      else {
-        intake.extendIntake();
-        System.out.println("DEXTENDO PISTONO");
-
-        intake.isDeployed = false;
-      }
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
-
 }
