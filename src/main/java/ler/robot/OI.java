@@ -77,4 +77,13 @@ public class OI {
 
     }
 
+    public double getLeftInput(){
+        return driverController.getY(Hand.kLeft);
+    }
+
+    public double getRightInput(){
+        return driverController.getY(Hand.kRight);
+
+    }
+
 }

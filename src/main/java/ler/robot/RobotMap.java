@@ -32,13 +32,13 @@ import ler.robot.subsystems.Shooter;
  */
 public final class RobotMap {
   public static final class CANConstants {
-    public static final int LEFT_DRIVE_SPARK_1 = 2;
-    public static final int LEFT_DRIVE_SPARK_2 = 3;
-    public static final int LEFT_DRIVE_SPARK_3 = 4;
+    public static final int LEFT_DRIVE_SPARK_1 = 5;
+    public static final int LEFT_DRIVE_SPARK_2 = 6;
+    public static final int LEFT_DRIVE_SPARK_3 = 7;
     
-    public static final int RIGHT_DRIVE_SPARK_1 = 5;
-    public static final int RIGHT_DRIVE_SPARK_2 = 6;
-    public static final int RIGHT_DRIVE_SPARK_3 = 7;
+    public static final int RIGHT_DRIVE_SPARK_1 = 2;
+    public static final int RIGHT_DRIVE_SPARK_2 = 3;
+    public static final int RIGHT_DRIVE_SPARK_3 = 4;
 
 
     public static final int INTAKE_TALON = 8;

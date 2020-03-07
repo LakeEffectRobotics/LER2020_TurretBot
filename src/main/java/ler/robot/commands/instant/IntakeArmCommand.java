@@ -29,12 +29,12 @@ public class IntakeArmCommand extends InstantCommand {
   @Override
   public void initialize() {
     if(!intake.isDeployed) {
-      intake.retractIntake();
+      intake.extendIntake();
       System.out.println("EXTENDO PISTONO");
       intake.isDeployed = true;
     }
     else {
-      intake.extendIntake();
+      intake.retractIntake();
       System.out.println("DEXTENDO PISTONO");
 
       intake.isDeployed = false;

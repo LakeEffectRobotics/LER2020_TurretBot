@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -20,6 +21,8 @@ import ler.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
   
+  double maxOutput=1;
+  private boolean isInverted = false;
 
   /*
   // The left-side drive encoder
@@ -45,68 +48,37 @@ public class Drivetrain extends SubsystemBase {
   }
 
   
-
-  /**
+ /**
    * Drives the robot using arcade controls.
    *
-   * @param fwd the commanded forward movement
-   * @param rot the commanded rotation
+   * @param left the commanded forward movement
+   * @param right the commanded rotation
    */
   public void tankDrive(double left, double right) {
-    //slow it down
-    left *= 0.25;
-    right *= 0.25;
-    //System.out.println(left);
-    //System.out.println(right);
+
+    //Slow it down
+    left *= 0.9;
+    right *= 0.9;
+    
+    if(isInverted){
+      double tempRight = left * -1;
+      left = right * -1;
+      right = tempRight;
+    }
     RobotMap.leftDriveSpark1.set(left);
     RobotMap.rightDriveSpark1.set(right);
+    //System.out.println("Actual Left" + left+"\t"+ "Actual Right" + right);
   }
 
-  /**
-   * Resets the drive encoders to currently read a position of 0.
-   */
-  /*
-  public void resetEncoders() {
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
+  public void tankStop() {
+    RobotMap.leftDriveSpark1.set(0);
+    RobotMap.rightDriveSpark1.set(0);
   }
-  */
 
-  /**
-   * Gets the average distance of the TWO encoders.
-   *
-   * @return the average of the TWO encoder readings
-   */
-
-   /*
-  public double getAverageEncoderDistance() {
-    return (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
+  //@todo currently not mapped to anything
+  public void invertControls(){
+    isInverted = !isInverted;
   }
-  */
-
-  /**
-   * Gets the left drive encoder.
-   *
-   * @return the left drive encoder
-   */
-
-   /*
-  public Encoder getLeftEncoder() {
-    return m_leftEncoder;
-  }
-  */
-
-  /**
-   * Gets the right drive encoder.
-   *
-   * @return the right drive encoder
-   */
-
-   /*
-  public Encoder getRightEncoder() {
-    return m_rightEncoder;
-  }
-  */
 
   /**
    * Sets the max output of the drive.  Useful for scaling the drive to drive more slowly.
@@ -114,6 +86,6 @@ public class Drivetrain extends SubsystemBase {
    * @param maxOutput the maximum output to which the drive will be constrained
    */
   public void setMaxOutput(double maxOutput) {
-    RobotMap.m_drive.setMaxOutput(maxOutput);
+    this.maxOutput = maxOutput;
   }
 }
