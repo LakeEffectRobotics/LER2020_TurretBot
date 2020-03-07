@@ -71,7 +71,7 @@ public class OI {
         winchControlButton.whenHeld(new ClimberWinchCommand(container.climber));  
         
         intakeHeightButton.whenReleased(new IntakeArmCommand(container.intake));
-        intakeButton.whileHeld(new IntakeCommand(container.intake, container.hopper, container.chute));
+        intakeButton.whenHeld(new IntakeCommand(container.intake, container.hopper, container.chute));
 
         //moveTurretJoystick.whenPressed(new TurretMoveCommand(container.turret));
 
