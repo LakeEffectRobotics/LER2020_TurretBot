@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -120,8 +121,12 @@ public final class RobotMap {
   
   public static Compressor c = new Compressor(01);
 
+  // Gyro
+  public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
   public static void init(){
-    
+    gyro.calibrate();
+
     // Driving logic
     leftDriveSpark2.follow(leftDriveSpark1);
     leftDriveSpark3.follow(leftDriveSpark1);
