@@ -24,18 +24,6 @@ public class Drivetrain extends SubsystemBase {
   double maxOutput=1;
   private boolean isInverted = false;
 
-  /*
-  // The left-side drive encoder
-  private final Encoder m_leftEncoder =
-      new Encoder(DriveConstants.kLeftEncoderPorts[0], DriveConstants.kLeftEncoderPorts[1],
-                  DriveConstants.kLeftEncoderReversed);
-
-  // The right-side drive encoder
-  private final Encoder m_rightEncoder =
-      new Encoder(DriveConstants.kRightEncoderPorts[0], DriveConstants.kRightEncoderPorts[1],
-                  DriveConstants.kRightEncoderReversed);
-  */
-
   /**
    * Creates a new DriveSubsystem.
    */
@@ -87,5 +75,20 @@ public class Drivetrain extends SubsystemBase {
    */
   public void setMaxOutput(double maxOutput) {
     this.maxOutput = maxOutput;
+  }
+
+  public double getLeftEncoder() {
+    return(((RobotMap.leftDriveSpark1.getEncoder().getPosition())));// + (RobotMap.leftDriveSpark2.getEncoder().getPosition()) + (RobotMap.leftDriveSpark3.getEncoder().getPosition())/3.00));
+  }
+  public double getRightEncoder() {
+    return(((RobotMap.rightDriveSpark1.getEncoder().getPosition())));// + (RobotMap.rightDriveSpark2.getEncoder().getPosition()) + (RobotMap.rightDriveSpark3.getEncoder().getPosition())/3.00));
+  }
+  public void resetPosition(){
+    RobotMap.leftDriveSpark1.getEncoder().setPosition(0);
+    RobotMap.leftDriveSpark2.getEncoder().setPosition(0);
+    RobotMap.leftDriveSpark3.getEncoder().setPosition(0);
+    RobotMap.rightDriveSpark1.getEncoder().setPosition(0);
+    RobotMap.rightDriveSpark2.getEncoder().setPosition(0);
+    RobotMap.rightDriveSpark3.getEncoder().setPosition(0);
   }
 }
