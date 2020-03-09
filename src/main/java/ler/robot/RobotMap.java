@@ -120,9 +120,6 @@ public final class RobotMap {
   
   public static Compressor c = new Compressor(01);
 
-  // The robot's drive
-  public static final DifferentialDrive m_drive = new DifferentialDrive(leftDriveSpark1, rightDriveSpark1);
-
   public static void init(){
     
     // Driving logic
