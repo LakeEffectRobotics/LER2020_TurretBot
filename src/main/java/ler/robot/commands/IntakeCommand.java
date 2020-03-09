@@ -63,8 +63,8 @@ public class IntakeCommand extends CommandBase {
     
 
     intake.driveIntake(intakeSpeed);
-    hopper.driveHopper(HOPPER_TARGET_SPEED);
-    chute.driveChute(CHUTE_TARGET_SPEED);
+    // hopper.driveHopper(HOPPER_TARGET_SPEED);
+    // chute.driveChute(CHUTE_TARGET_SPEED);
   }
 
   // Called once the command ends or is interrupted.

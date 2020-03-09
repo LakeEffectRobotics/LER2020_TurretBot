@@ -54,7 +54,7 @@ public final class RobotMap {
     public static final int WINCH_FALCON = 13;
 
 
-    public static final int CHUTE_SPARK = 14;
+    public static final int CHUTE_TALON = 14;
     public static final int HOPPER_TALON = 15;
   }
 
@@ -91,7 +91,7 @@ public final class RobotMap {
   public static final TalonSRX turretRotateTalon = new TalonSRX(CANConstants.TURRET_ROTATE_TALON);
 
   // Ball control mechanisms
-  public static final CANSparkMax chuteSpark = new CANSparkMax(CANConstants.CHUTE_SPARK, MotorType.kBrushless);
+  public static final TalonSRX chuteTalon = new TalonSRX(CANConstants.CHUTE_TALON);
   public static final TalonSRX hopperTalon = new TalonSRX(CANConstants.HOPPER_TALON);
 
   // Winch control

@@ -19,7 +19,7 @@ public class Chute extends SubsystemBase{
 
     public void driveChute(double speed) {
 
-        RobotMap.chuteSpark.set(speed);
+        RobotMap.chuteTalon.set(ControlMode.PercentOutput, speed);
 
     }
 
