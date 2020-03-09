@@ -39,6 +39,9 @@ public class OI {
     public static final class Mappings {
         
         public static final int HALF_SPEED_BUTTON = Button.kBumperRight.value;
+        public static final int GYRO_BUTTON = Axis.kRightTrigger.value;
+        public static final int INVERT_BUTTON = Button.kY.value;
+
         public static final int LEFT_JOYSTICK_X = Axis.kLeftX.value;
     
         public static final int INTAKE_BUTTON = Button.kB.value;
@@ -55,13 +58,16 @@ public class OI {
     public XboxController driverController = new XboxController(DRIVER_CONTROLLER_PORT);
     public XboxController operatorController = new XboxController(OPERATOR_CONTROLLER_PORT);
 
-    public JoystickButton moveTurretJoystick = new JoystickButton(operatorController, Mappings.LEFT_JOYSTICK_X);
+    public JoystickButton gyroButton = new JoystickButton(driverController, Mappings.GYRO_BUTTON);
     public JoystickButton halfSpeedButton = new JoystickButton(driverController, Mappings.HALF_SPEED_BUTTON);
+    public JoystickButton invertButton = new JoystickButton(driverController, Mappings.INVERT_BUTTON);
+
+    public JoystickButton moveTurretJoystick = new JoystickButton(operatorController, Mappings.LEFT_JOYSTICK_X);
     public JoystickButton aimbotButton = new JoystickButton(operatorController, Mappings.AIMBOT_BUTTON);
     public JoystickButton intakeHeightButton = new JoystickButton(operatorController, Mappings.INTAKE_HEIGHT_BUTTON);
+    //Create intake trigger here 
     public JoystickButton intakeButton = new JoystickButton(operatorController, Mappings.INTAKE_BUTTON);
 
-    //Create intake trigger here 
 
     public JoystickButton climberToggleButton = new JoystickButton(operatorController, Mappings.CLIMBER_TOGGLE_BUTTON);
     public JoystickButton winchControlButton = new JoystickButton(operatorController, Mappings.WINCH_CONTROL_BUTTON);
@@ -83,8 +89,11 @@ public class OI {
 
 
         // While holding the shoulder button, drive at half speed
-        
         halfSpeedButton.whenHeld(new HalveDriveSpeed(container.drivetrain));
+        gyroButton.whenHeld(new GyroDriveCommand(container.drivetrain, container.gyro));
+        invertButton.whenPressed(new InvertControlsCommand(container.drivetrain));
+
+
         aimbotButton.whenHeld(new TurretAimCommand(container.turret));
 
         climberToggleButton.whenPressed(new ClimberCommand(container.climber));

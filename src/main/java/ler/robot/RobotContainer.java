@@ -20,6 +20,7 @@ import ler.robot.commands.HalveDriveSpeed;
 import ler.robot.commands.ShooterCommand;
 import ler.robot.commands.TurretMoveCommand;
 import ler.robot.subsystems.Drivetrain;
+import ler.robot.subsystems.Gyro;
 import ler.robot.subsystems.Hopper;
 import ler.robot.subsystems.Shooter;
 import ler.robot.subsystems.Turret;
@@ -44,7 +45,8 @@ public class RobotContainer {
   final Climber climber = new Climber();
   final Chute chute = new Chute();
   final Intake intake = new Intake();
-  final Hopper hopper = new Hopper(); 
+  final Hopper hopper = new Hopper();
+  final Gyro gyro = new Gyro();
 
   // A chooser for autonomous commands
   SendableChooser<Command> autoChooser = new SendableChooser<>();
