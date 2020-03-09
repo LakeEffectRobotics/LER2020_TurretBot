@@ -13,6 +13,7 @@ import ler.robot.RobotMap;
 import edu.wpi.first.hal.sim.DriverStationSim;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -31,20 +32,39 @@ import ler.robot.subsystems.Hopper;
  */
 public class OI {
 
-    // The driver's controller
-    public XboxController driverController = new XboxController(RobotMap.OIConstants.DRIVER_CONTROLLER_PORT);
-    public XboxController operatorController = new XboxController(RobotMap.OIConstants.OPERATOR_CONTROLLER_PORT);
 
-    public JoystickButton moveTurretJoystick = new JoystickButton(operatorController, RobotMap.OIConstants.LEFT_JOYSTICK_X);
-    public JoystickButton halfSpeedButton = new JoystickButton(driverController, RobotMap.OIConstants.HALF_SPEED_BUTTON);
-    public JoystickButton aimbotButton = new JoystickButton(operatorController, RobotMap.OIConstants.AIMBOT_BUTTON);
-    public JoystickButton intakeHeightButton = new JoystickButton(operatorController, RobotMap.OIConstants.INTAKE_HEIGHT_BUTTON);
-    public JoystickButton intakeButton = new JoystickButton(operatorController, RobotMap.OIConstants.INTAKE_BUTTON);
+    public static final int DRIVER_CONTROLLER_PORT = 1;
+    public static final int OPERATOR_CONTROLLER_PORT = 2;
+
+    public static final class Mappings {
+        
+        public static final int HALF_SPEED_BUTTON = Button.kBumperRight.value;
+        public static final int LEFT_JOYSTICK_X = Axis.kLeftX.value;
+    
+        public static final int INTAKE_BUTTON = Button.kB.value;
+        public static final int INTAKE_HEIGHT_BUTTON = Button.kStickRight.value;
+    
+        public static final int AIMBOT_BUTTON = Button.kBumperRight.value;
+    
+        public static final int CLIMBER_TOGGLE_BUTTON = Button.kStart.value;
+        public static final int WINCH_CONTROL_BUTTON = Button.kBack.value;
+    
+      }
+
+    // The driver's controller
+    public XboxController driverController = new XboxController(DRIVER_CONTROLLER_PORT);
+    public XboxController operatorController = new XboxController(OPERATOR_CONTROLLER_PORT);
+
+    public JoystickButton moveTurretJoystick = new JoystickButton(operatorController, Mappings.LEFT_JOYSTICK_X);
+    public JoystickButton halfSpeedButton = new JoystickButton(driverController, Mappings.HALF_SPEED_BUTTON);
+    public JoystickButton aimbotButton = new JoystickButton(operatorController, Mappings.AIMBOT_BUTTON);
+    public JoystickButton intakeHeightButton = new JoystickButton(operatorController, Mappings.INTAKE_HEIGHT_BUTTON);
+    public JoystickButton intakeButton = new JoystickButton(operatorController, Mappings.INTAKE_BUTTON);
 
     //Create intake trigger here 
 
-    public JoystickButton climberToggleButton = new JoystickButton(operatorController, RobotMap.OIConstants.CLIMBER_TOGGLE_BUTTON);
-    public JoystickButton winchControlButton = new JoystickButton(operatorController, RobotMap.OIConstants.WINCH_CONTROL_BUTTON);
+    public JoystickButton climberToggleButton = new JoystickButton(operatorController, Mappings.CLIMBER_TOGGLE_BUTTON);
+    public JoystickButton winchControlButton = new JoystickButton(operatorController, Mappings.WINCH_CONTROL_BUTTON);
 
     /**
      * Use this method to define your button->command mappings. Buttons can be
