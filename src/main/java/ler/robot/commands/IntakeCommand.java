@@ -31,7 +31,7 @@ public class IntakeCommand extends CommandBase {
   private final double INTAKE_MAXIMUM_SPEED = 0.9;
 
   private final double HOPPER_TARGET_SPEED = 0.2;
-  private final double CHUTE_TARGET_SPEED = 0.6;
+  private final double CHUTE_TARGET_SPEED = 0.8;
 
   double intakeSpeed;
 
@@ -67,7 +67,7 @@ public class IntakeCommand extends CommandBase {
 
     intake.driveIntake(intakeSpeed);
     // hopper.driveHopper(HOPPER_TARGET_SPEED);
-    chute.pulseChute(500, 250, CHUTE_TARGET_SPEED);
+    chute.pulseChute(100, 150, CHUTE_TARGET_SPEED);
   }
 
   // Called once the command ends or is interrupted.

@@ -30,14 +30,14 @@ public class Chute extends SubsystemBase{
         if(isPulsing) {
             if(System.currentTimeMillis()>=startTime + duration) {
                 isPulsing = false;
-                RobotMap.chuteTalon.set(ControlMode.PercentOutput, speed);
+                RobotMap.chuteTalon.set(ControlMode.PercentOutput, 0);
                 startTime = System.currentTimeMillis();
             }
         }
         else if(!isPulsing) {
             if(System.currentTimeMillis()>=startTime + pause) {
                 isPulsing = true;
-                RobotMap.chuteTalon.set(ControlMode.PercentOutput, 0);
+                RobotMap.chuteTalon.set(ControlMode.PercentOutput, speed);
                 startTime = System.currentTimeMillis();
 
             }
