@@ -122,6 +122,9 @@ public final class RobotMap {
     rightDriveSpark2.follow(rightDriveSpark1);
     rightDriveSpark3.follow(rightDriveSpark1);
 
+    //Intake motor invert
+    intakeTalon.setInverted(true);
+
     // Turret motors PIDS
     turretRotateTalon.config_kF(0, Turret.kF);
     turretRotateTalon.config_kP(0, Turret.kP);

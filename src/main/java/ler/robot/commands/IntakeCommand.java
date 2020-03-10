@@ -27,11 +27,11 @@ public class IntakeCommand extends CommandBase {
   Hopper hopper;
   Chute chute;
 
-  private final double INTAKE_RAMP_DOWN = 0.8;
-  private final double INTAKE_MAXIMUM_SPEED = 0.4;
+  private final double INTAKE_RAMP_DOWN = 0.2;
+  private final double INTAKE_MAXIMUM_SPEED = 0.9;
 
   private final double HOPPER_TARGET_SPEED = 0.2;
-  private final double CHUTE_TARGET_SPEED = 0.2;
+  private final double CHUTE_TARGET_SPEED = 0.6;
 
   double intakeSpeed;
 
@@ -49,14 +49,17 @@ public class IntakeCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("I INTAKING");
+    chute.startTime = System.currentTimeMillis();
+
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("INTAKING");
-    intakeSpeed = Robot.oi.operatorController.getTriggerAxis(Hand.kRight)*INTAKE_RAMP_DOWN;
+    System.out.println("E INTAKING");
+    intakeSpeed = 1; //Robot.oi.operatorController.getTriggerAxis(Hand.kRight)*INTAKE_RAMP_DOWN;
     if(intakeSpeed > INTAKE_MAXIMUM_SPEED) {
       intakeSpeed = INTAKE_MAXIMUM_SPEED;
     }
@@ -64,12 +67,16 @@ public class IntakeCommand extends CommandBase {
 
     intake.driveIntake(intakeSpeed);
     // hopper.driveHopper(HOPPER_TARGET_SPEED);
-    // chute.driveChute(CHUTE_TARGET_SPEED);
+    chute.pulseChute(500, 250, CHUTE_TARGET_SPEED);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    intake.driveIntake(0);
+    chute.driveChute(0);
+
+
   }
 
   // Returns true when the command should end.

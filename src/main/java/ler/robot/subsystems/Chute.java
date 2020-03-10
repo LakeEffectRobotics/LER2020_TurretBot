@@ -17,10 +17,31 @@ import ler.robot.RobotMap;
 
 public class Chute extends SubsystemBase{
 
+    public double startTime;
+    public boolean isPulsing;
+
     public void driveChute(double speed) {
 
         RobotMap.chuteTalon.set(ControlMode.PercentOutput, speed);
 
+    }
+
+    public void pulseChute(double duration, double pause, double speed) {
+        if(isPulsing) {
+            if(System.currentTimeMillis()>=startTime + duration) {
+                isPulsing = false;
+                RobotMap.chuteTalon.set(ControlMode.PercentOutput, speed);
+                startTime = System.currentTimeMillis();
+            }
+        }
+        else if(!isPulsing) {
+            if(System.currentTimeMillis()>=startTime + pause) {
+                isPulsing = true;
+                RobotMap.chuteTalon.set(ControlMode.PercentOutput, 0);
+                startTime = System.currentTimeMillis();
+
+            }
+        }
     }
 
 
