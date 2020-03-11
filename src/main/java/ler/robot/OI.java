@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.Joystick;
 import ler.robot.commands.*;
 import ler.robot.commands.instant.*;
 
@@ -31,8 +32,9 @@ import ler.robot.subsystems.Hopper;
  * Operator Interface, used to map buttons with the controllers
  */
 public class OI {
-
-
+    public static boolean XBOX_DRIVE = true;
+    public static final int DRIVER_LEFT_JOYSTICK_PORT = 0;
+    public static final int DRIVER_RIGHT_JOYSTICK_PORT = 1;
     public static final int DRIVER_CONTROLLER_PORT = 1;
     public static final int OPERATOR_CONTROLLER_PORT = 2;
 
@@ -41,6 +43,10 @@ public class OI {
         public static final int HALF_SPEED_BUTTON = Button.kBumperRight.value;
         public static final int GYRO_BUTTON = Axis.kRightTrigger.value;
         public static final int INVERT_BUTTON = Button.kY.value;
+
+        public static final int XBOX_HALF_SPEED_BUTTON = Button.kBumperRight.value;
+        public static final int XBOX_GYRO_BUTTON = Axis.kRightTrigger.value;
+        public static final int XBOX_INVERT_BUTTON = Button.kY.value;
 
         public static final int LEFT_JOYSTICK_X = Axis.kLeftX.value;
     
@@ -56,11 +62,18 @@ public class OI {
 
     // The driver's controller
     public XboxController driverController = new XboxController(DRIVER_CONTROLLER_PORT);
+    public Joystick driverLeftJoystick = new Joystick(DRIVER_LEFT_JOYSTICK_PORT);
+    public Joystick driverRightJoystick = new Joystick(DRIVER_RIGHT_JOYSTICK_PORT);
     public XboxController operatorController = new XboxController(OPERATOR_CONTROLLER_PORT);
 
-    public JoystickButton gyroButton = new JoystickButton(driverController, Mappings.GYRO_BUTTON);
-    public JoystickButton halfSpeedButton = new JoystickButton(driverController, Mappings.HALF_SPEED_BUTTON);
-    public JoystickButton invertButton = new JoystickButton(driverController, Mappings.INVERT_BUTTON);
+    //configure which joysticks these are on as the driveteam wants
+    public JoystickButton gyroButton = new JoystickButton(driverLeftJoystick, Mappings.GYRO_BUTTON);
+    public JoystickButton halfSpeedButton = new JoystickButton(driverLeftJoystick, Mappings.HALF_SPEED_BUTTON);
+    public JoystickButton invertButton = new JoystickButton(driverRightJoystick, Mappings.INVERT_BUTTON);
+
+    public JoystickButton gyroXboxButton = new JoystickButton(driverController, Mappings.XBOX_GYRO_BUTTON);
+    public JoystickButton halfSpeedXboxButton = new JoystickButton(driverController, Mappings.XBOX_HALF_SPEED_BUTTON);
+    public JoystickButton invertXboxButton = new JoystickButton(driverController, Mappings.XBOX_INVERT_BUTTON);
 
     public JoystickButton moveTurretJoystick = new JoystickButton(operatorController, Mappings.LEFT_JOYSTICK_X);
     public JoystickButton aimbotButton = new JoystickButton(operatorController, Mappings.AIMBOT_BUTTON);
@@ -89,6 +102,12 @@ public class OI {
 
 
         // While holding the shoulder button, drive at half speed
+        if(XBOX_DRIVE){
+            halfSpeedButton = halfSpeedXboxButton;
+            gyroButton = gyroXboxButton;
+            invertButton = invertXboxButton;
+        }
+
         halfSpeedButton.whenHeld(new HalveDriveSpeed(container.drivetrain));
         gyroButton.whenHeld(new GyroDriveCommand(container.drivetrain, container.gyro));
         invertButton.whenPressed(new InvertControlsCommand(container.drivetrain));
@@ -107,11 +126,20 @@ public class OI {
     }
 
     public double getLeftInput(){
-        return driverController.getY(Hand.kLeft);
+        if(XBOX_DRIVE){
+            return driverLeftJoystick.getY();
+        }else{
+            return driverController.getY(Hand.kLeft);
+        }
+        
     }
 
     public double getRightInput(){
-        return driverController.getY(Hand.kRight);
+        if(XBOX_DRIVE){
+            return driverRightJoystick.getY();
+        }else{
+            return driverController.getY(Hand.kRight);
+        }
 
     }
 

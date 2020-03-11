@@ -5,6 +5,12 @@ public class Tools {
     final static double DEADZONE = 0.15;
 
     //v     vv Halil Drive vvv
+    /**
+   * This function gets the adapted speed from a joystick on an xbox controller or joystick and scales it to drive the drivetrain
+   *
+   * @param speed speed from the controller
+   * @return speed scaled so that it's nice to drive
+   */
     public static double getAdaptedSpeed(double speed) {
         // Using a logisitic  function *** FUNCTION HAS BEEN FIXED ***
         //Alot harder to control in mid range but much nicer in low and high range.
